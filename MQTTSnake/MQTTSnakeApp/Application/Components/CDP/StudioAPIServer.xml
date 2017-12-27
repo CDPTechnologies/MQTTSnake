@@ -1,0 +1,25 @@
+<Component Name="StudioAPIServer" Model="StudioAPIServer" Description='Provides StudioAPI server for non CDP application integration.' Activate="1">
+  <Debug>0</Debug>
+  <fs>10</fs>
+  <DefaultPort>7689</DefaultPort>
+  <PortRangeUpperLimit>8705</PortRangeUpperLimit>
+  <NetworkInterface>ETH0</NetworkInterface>
+  <ValueUpdateFs>20</ValueUpdateFs>
+  <LibwebsocketsDebugLevel>0</LibwebsocketsDebugLevel>
+  <MaxConnectionsCount>100</MaxConnectionsCount>
+  <SocketServiceIntervalMs>1000</SocketServiceIntervalMs>
+  <MinSubscriptionFs>1</MinSubscriptionFs>
+  <MaxSubscriptionFs>1000</MaxSubscriptionFs>
+  <MaxCountPendingNonperiodicRequests>10000</MaxCountPendingNonperiodicRequests>
+  <Subcomponents></Subcomponents>
+  <Alarms>
+    <Alarm Name="Component Suspended" Level="Warning" Enabled="1" Text="Component &apos;StudioAPIServer&apos; was suspended!" Trig="0" Description="A component was suspended!"  Model="CDPAlarm"></Alarm>
+    <Alarm Name="Transmission Error" Level="Warning" Enabled="1" Text="StudioAPIServer transmission-error alarm" Description="Transmission-error alarm"></Alarm>
+    <Alarm Name="ValueQueue Overload Warning" Level="Warning" Enabled="1" Text="StudioAPIServer Overload Warning" Description="StudioAPIServer ValueQueue	almost full. To ensure the CDP application does not skip periodic value updates to client, disconnect some clients from the CDP application or reduce the count of periodically changing values that are plotted/displayed in client"></Alarm>
+    <Alarm Name="ValueQueue Overload Error" Level="Error" Enabled="1" Text="StudioAPIServer Overload Error" Description="StudioAPIServer ValueQueue overflow.	The server may skip sending periodic value updates to client. To restore reliable data sending, disconnect some clients from the CDP application or reduce the count of periodically changing values that are plotted/displayed in client"></Alarm>
+  </Alarms>
+  <Signals>
+    <Signal Name="Process Timer" Value="0.0" Unit="s/s" Type="double" Description="Process run time each s."  Model="CDPSignal&lt;double&gt;"></Signal>
+    <Signal Name="Process Period" Value="0.0" Unit="s" Type="double" Description="Process interval [s]."  Model="CDPSignal&lt;double&gt;"></Signal>
+  </Signals>
+</Component>

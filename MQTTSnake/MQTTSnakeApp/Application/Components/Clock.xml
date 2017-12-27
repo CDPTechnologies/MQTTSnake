@@ -1,0 +1,31 @@
+<Component Model='Sine' Name='Clock' src='Components/Clock.xml'  Description='Sinus generator. Generates the signal: Output = Offset + Amplitude * sin ( 2*PI*Frequency*Time ).'>
+  <Priority>high</Priority>
+  <fs>100</fs>
+
+  <Signals>
+    <Signal Description='Process run time each s.' Input='0' Model='CDPSignal&lt;double&gt;' Name='Process Timer' Type='double' Unit='s/s'></Signal>
+    <Signal Description='Process interval [s].' Input='0' Model='CDPSignal&lt;double&gt;' Name='Process Period' Type='double' Unit='s'></Signal>
+    <Signal Description='Time [s]' Input='0' Model='CDPSignal&lt;double&gt;' Name='Time' Type='double'></Signal>
+    <Signal Description='Sinus output' Input='0' Model='CDPSignal&lt;double&gt;' Name='Output' Type='double'>
+      <Operator Description='The ScalingOperator scales from one range and type to another range and type.' Model='Automation.ScalingOperator&lt;double&gt;' Name='ScalingOperator' Type='double'>
+        <ScalingPoint InValue='-1' Model='Automation.ScalingPoint&lt;double&gt;' Name='ScalingPoint' OutValue='0' Type='double'  InValueRouting=''  OutValueRouting=''></ScalingPoint>
+        <ScalingPoint InValue='0' Model='Automation.ScalingPoint&lt;double&gt;' Name='ScalingPoint1' OutValue='0' Type='double'  InValueRouting=''  OutValueRouting=''></ScalingPoint>
+        <ScalingPoint InValue='0' Model='Automation.ScalingPoint&lt;double&gt;' Name='ScalingPoint2' OutValue='1' Type='double'  InValueRouting=''  OutValueRouting=''></ScalingPoint>
+        <ScalingPoint InValue='1' Model='Automation.ScalingPoint&lt;double&gt;' Name='ScalingPoint3' OutValue='1' Type='double'  InValueRouting=''  OutValueRouting=''></ScalingPoint></Operator></Signal>
+  </Signals>
+
+  <Alarms>
+    <Alarm Description='A component was suspended!' Enabled='1' Model='CDPAlarm' Name='Component Suspended' Text='Component was suspended!'></Alarm>
+  </Alarms>
+
+  <Timers>
+    <Timer Description='Timer to measure CDPComponent processing.' Model='CDPTimer' Name='ProcessTimer'></Timer>
+  </Timers>
+
+  <Parameters>
+    <Parameter Description='Amplitude' Name='Amplitude' Value='1'></Parameter>
+    <Parameter Description='Frequency [Hz]' Name='Frequency' Value='2'></Parameter>
+    <Parameter Description='Offset' Name='Offset' Value='0'></Parameter>
+    <Parameter Description='Use realtime as time-input (m_t is then updated with globalTime). Default, m_t is updated by m_Timer.' Name='UseRealTime' Value='1'></Parameter>
+  </Parameters>
+</Component>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<Component Name="CDPEventSubscriber" Model="EventSubscr" Description='Subscribes to event providers. Can subscribe to different providers, such as CDPEventNodes and CDPEventLoggers.' Activate="1">
+  <fs>5</fs>
+  <InitialState></InitialState>
+
+  <EventProviders>
+    <!-- A list of components (CDPEventNode/CDPEventLogger) providing events. -->
+    <EventProvider Name="Provider1" Routing="MQTTSnakeApp.CDP.CDPEventNode"></EventProvider>
+  </EventProviders>
+
+  <Subscriptions>
+    <Subscription Name="Subscription1" Timeout="30">
+      <Group Name="GroupItem1" GroupName="All" Events="Set"></Group>
+      <Group Name="GroupItem2" GroupName="All" Events="Clear"></Group>
+      <Group Name="GroupItem3" GroupName="All" Events="Ack"></Group>
+    </Subscription>
+  </Subscriptions>
+
+  <Signals>
+    <Signal Name="Process Timer" Value="0.0" Unit="s/s" Type="double" Description="Process run time each s."  Model="CDPSignal&lt;double&gt;"></Signal>
+    <Signal Name="Process Period" Value="0.0" Unit="s" Type="double" Description="Process interval [s]."  Model="CDPSignal&lt;double&gt;"></Signal>
+  </Signals>
+
+  <Alarms>
+    <Alarm Name="Component Suspended" Level="Warning" Enabled="1" Text="Component 'CDPEventSubscriber' was suspended!" Trig="0" Description="A component was suspended!"  Model="CDPAlarm"></Alarm>
+  </Alarms>
+
+  <Parameters>
+    <Parameter Name="Simple event database size" Unit="events" Value="5000" PreviousValue="1024"
+            TimeLastChanged="" Description=""></Parameter>
+    <Parameter Name="Extended event database size" Unit="events" Value="5000" PreviousValue="1024"
+            TimeLastChanged="" Description=""></Parameter>
+    <Parameter Name="ExtendedUpdateRequestPeriod" Unit="s" Value="10" PreviousValue="10"
+            TimeLastChanged="" Description="Cyclic periodic time to retrieve extended information if the informatoin does not already exist in local DB."></Parameter>
+    <Parameter Name="SubscriptConfirmationPeriod" Unit="s" Value="1" PreviousValue="1"
+            TimeLastChanged="" Description="Cyclic periodic time to resend subscription request to former unconfirmed subscriptions requests."></Parameter>
+    <Parameter Name="SubscriptionUpdatePeriod" Unit="s" Value="10" PreviousValue="10"
+            TimeLastChanged="" Description="Cyclic periodic time to send subscription request to configured providers. (refresh of subscription)"></Parameter>
+    <Parameter Name="Log events to file" Unit="" Value="0" Min="" Max="" PreviousValue="0"
+            TimeLastChanged="" Description="Specifies whether events should be logged to file."></Parameter>
+    <Parameter Name="MaxHistoryEventListSize" Unit="Events" Value="1000" Description="Specifies the max size of the History Event List. The oldest events are removed if limit is reached."></Parameter>
+  </Parameters>
+
+</Component>

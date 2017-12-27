@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<Application Name="MQTTSnakeApp" Model="Application" Description='This is a template for creating CDP controller applications.'>
+  <ApplicationHandle>1</ApplicationHandle>
+  <fs>10</fs>
+  <ClockSync>None</ClockSync>
+  <IsTimeServer>0</IsTimeServer>
+  <OStimeInterval>120</OStimeInterval>
+
+  <NetworkInterface Name="ETH0" MAC="" IPAddress="192.168.170.149" SubnetMask="255.255.255.0"></NetworkInterface>
+
+  <CDPMessages>
+    <TimestampLocal>1</TimestampLocal>
+    <TimestampDecimals>3</TimestampDecimals>
+  </CDPMessages>
+
+  <Subcomponents>
+    <Subcomponent Name="CDP"        Model="CDP"        src="Components\CDP.xml"></Subcomponent>
+    <Subcomponent Encryption='Unencrypted' ListenAddress='127.0.0.1' ListenPort='1883' Model='MQTTIO.MQTTBroker' Name='MQTTBroker' src='Components/MQTTBroker.xml'></Subcomponent>
+    <Subcomponent BrokerHost='127.0.0.1' BrokerPort='1883' Encryption='Unencrypted' Model='MQTTIO.MQTTClient' Name='MQTTClient' src='Components/MQTTClient.xml'></Subcomponent>
+    <Subcomponent Model='Sine' Name='Clock' src='Components/Clock.xml'></Subcomponent>
+  </Subcomponents>
+
+  <Signals>
+    <Signal Name='Process Timer'    Model="CDPSignal&lt;double&gt;" Type='double' Unit='s/s'    Description='Process run time each s.' ></Signal>
+    <Signal Name='Process Period'   Model="CDPSignal&lt;double&gt;" Type='double' Unit='s'      Description='Process interval [s].' ></Signal>
+    <Signal Name="CPULoad"          Model="CDPSignal&lt;double&gt;" Type="double" Unit="0..1"   Description="CPU load [busy/idle, 0..1]."></Signal>
+    <Signal Name="MemUsed"          Model="CDPSignal&lt;double&gt;" Type="double" Unit="KiB"    Description="Memory used [KiB]."></Signal>
+    <Signal Name="MemUsedRelative"  Model="CDPSignal&lt;double&gt;" Type="double" Unit="0..1"   Description="Memory used relative [used/total, 0..1]."></Signal>
+    <Signal Name="MemTotal"         Model="CDPSignal&lt;double&gt;" Type="double" Unit="KiB"    Description="Memory total [KiB]."></Signal>
+    <Signal Name="MemBuffCache"     Model="CDPSignal&lt;double&gt;" Type="double" Unit="KiB"    Description="Memory in buffers and cache [KiB] (only relevant if Linux)."></Signal>
+  </Signals>
+
+  <Alarms>
+    <Alarm Name='Disk Alarm'            Level='Error'   Enabled='1' Trig='1'  Text='No disk-write problem detected.' Description='This alarm is set when something is wrong with the disk or files on the disk.'></Alarm>
+    <Alarm Name="InvalidLicense"        Level="Error" Enabled="1"   Text="Invalid or missing feature license detected."></Alarm>
+    <Alarm Name='Component Suspended'   Level='Warning' Enabled='1' Trig='0'  Text='Component was suspended!' Description='The component was suspended!' ></Alarm>
+  </Alarms>
+
+  <Parameters></Parameters>
+  
+
+</Application>

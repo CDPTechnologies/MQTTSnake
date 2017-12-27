@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!-- Default Engine CDP system component. -->
+<Component Name="CDPEngine" Model="CDPEngine" Description='Handles CDP process scheduling.' Activate="1">
+  <fs>10</fs>
+
+  <Alarms>
+    <Alarm Name="Overload High"             Level="Warning" Enabled="1" Timeout="0.1"   Text="High priority process thread overload"    Description="Unable to complete running of component processes within time frame."></Alarm>
+    <Alarm Name="Overload Normal"           Level="Warning" Enabled="1" Timeout="0.5"   Text="Normal priority process thread overload"  Description="Unable to complete running of component processes within time frame."></Alarm>
+    <Alarm Name="Overload Low"              Level="Notify"  Enabled="1" Timeout="1.0"   Text="Low priority process thread overload"     Description="Unable to complete running of component processes within time frame."></Alarm>
+    <Alarm Name="A Component is Suspended"  Level="Error"   Enabled="1"                 Text="A component has been suspended."></Alarm>
+    <Alarm Name="Component Suspended" Level="Warning" Enabled="1" Text="Component 'CDPEngine' was suspended!" Trig="0" Description="A component was suspended!"  Model="CDPAlarm"></Alarm>
+  </Alarms>
+
+  <Parameters>
+    <Parameter Name="CDPMsgTimeLimitProcMsg"  Value="2.0"   Unit="ms"  PreviousValue="2.0"  TimeLastChanged="Thu Feb 09 20:09:08 2012" Description="If it takes more than x ms (as specified by this parameter) to process a msg in a component, a CDPMessage is written (if debug-level is sufficient high)."></Parameter>
+  </Parameters>
+
+  <Signals>
+    <Signal Name="Process Timer" Value="0.0" Unit="s/s" Type="double" Description="Process run time each s."  Model="CDPSignal&lt;double&gt;"></Signal>
+    <Signal Name="Process Period" Value="0.0" Unit="s" Type="double" Description="Process interval [s]."  Model="CDPSignal&lt;double&gt;"></Signal>
+  </Signals>
+</Component>

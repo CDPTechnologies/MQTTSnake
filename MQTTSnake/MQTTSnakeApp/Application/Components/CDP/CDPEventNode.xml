@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+
+<Component Name="CDPEventNode" Model="CDPEventNode" Description='Collect events triggered in the application/controller.' Activate="1">
+  <Debug>0</Debug>
+  <fs>5</fs>
+  <MaxEventsToSendAtStartup>512</MaxEventsToSendAtStartup>
+
+  <Alarms>
+    <Alarm Name="Component Suspended" Level="Warning" Enabled="1" Text="Component 'CDPEventNode' was suspended!" Trig="0" Description="A component was suspended!"  Model="CDPAlarm"></Alarm>
+    <Alarm Name="BufferOverflow" Trig="1" Level="Warning" Enabled="1" Text="Oldest events are lost/overwritten." Description="Oldest events are lost/overwritten."></Alarm>
+  </Alarms>
+
+  <Parameters>
+    <Parameter Name="Update period" Unit="s" Value="1.0" Min="" Max=""   PreviousValue="0.5"
+            TimeLastChanged="" Description="Timout for event Update messages. Assure sequre event transmit, even when loss of last message."></Parameter>
+    <Parameter Name="Simple event database size" Unit="events" Value="5000" PreviousValue="1024"
+            TimeLastChanged="" Description=""></Parameter>
+    <Parameter Name="Extended event database size" Unit="events" Value="5000" PreviousValue="1024"
+            TimeLastChanged="" Description=""></Parameter>
+    <Parameter Name="Max messages per second" Unit="messages" Value="500" PreviousValue="500"
+            TimeLastChanged="" Description="The maximum number of messages that can be sent each second."></Parameter>
+  </Parameters>
+
+  <Signals>
+    <Signal Name="Process Timer" Value="0.0" Unit="s/s" Type="double" Description="Process run time each s."  Model="CDPSignal&lt;double&gt;"></Signal>
+    <Signal Name="Process Period" Value="0.0" Unit="s" Type="double" Description="Process interval [s]."  Model="CDPSignal&lt;double&gt;"></Signal>
+
+    <Signal Name='SimpleEventDB_bufferload' Input='0' Model="CDPSignal&lt;double&gt;" Type='double' Unit='persent [0-1]' Value='0' Routing='' Description='Simple event DB buffer load.'></Signal>
+    <Signal Name="TimeStampCompensation" Value="0.0" Model="CDPSignal&lt;double&gt;" Type="double" Unit="s" Input="1" Routing="" Description="Compensate timestamp for Event. Use this value to synchronise TimeStamp to external time reference, e.g. GPS time."></Signal>
+    <Signal Name="CurrentEventId" Value="0.0" Model="CDPSignal&lt;double&gt;" Type="double" Unit="num" Input="0" Routing="" Description="The number of events triggered on this CDPEventNode."></Signal>
+  </Signals>
+
+</Component>

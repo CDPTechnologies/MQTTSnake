@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<Component Name="MessengerIOServer" Model="MessengerIOServer" Description='Transports property and signal values between applications.' Activate="1">
+  <fs>100</fs>
+
+  <Signals>
+    <Signal Name="Process Timer" Value="0.0" Unit="s/s" Type="double" Description="Process run time each s."  Model="CDPSignal&lt;double&gt;"></Signal>
+    <Signal Name="Process Period" Value="0.0" Unit="s" Type="double" Description="Process interval [s]."  Model="CDPSignal&lt;double&gt;"></Signal>
+
+    <Signal Name="outputDisabled" Type="bool" Description="Set to true when output is disabled (if parameter RD output disable control is set, and RDManager is not ActiveMaster)." Model="CDPSignal&lt;bool&gt;"></Signal>
+    <Signal Name="Send-Receive Roundtrip time"	Value="0" Model="CDPSignal&lt;double&gt;"  Type="double" Description="[Disabled] Time to send and receive IOServer packets"></Signal>
+    <Signal Name="NumberOfNodes"                Value="0" Model="CDPSignal&lt;unsigned int&gt;"  Type="unsigned int" Description="[Disabled] Number of nodes defined in IOServer file."></Signal>
+    <Signal Name="NumberOfNodesOnline"          Value="0" Model="CDPSignal&lt;unsigned int&gt;"  Type="unsigned int" Description="[Disabled] Number of nodes currently online."></Signal>
+  </Signals>
+
+  <Parameters>
+    <Parameter Name="Fresh request interval"  Value="0.8"   Unit="s"    PreviousValue="0.04"  TimeLastChanged="Wed Mar 02 12:07:33 2005"  Description="Time interval for resend of signal request when signal request is fresh."></Parameter>
+    <Parameter Name="Old request interval"    Value="24"    Unit="s"    PreviousValue="0.08"  TimeLastChanged="Wed Mar 02 12:07:36 2005"  Description="Time interval for resend of signal request when signal request is old."></Parameter>
+    <Parameter Name="Timeout inpackets"       Value="8.2"   Unit="s"    PreviousValue="20  "  TimeLastChanged=""                          Description="Timeout from last packet received to input packet destroy."></Parameter>
+    <Parameter Name="Timeout outpackets"      Value="4.2"   Unit="s"    PreviousValue="2  "   TimeLastChanged=""                          Description="Timeout from remote server connection lost to output packet destroy."></Parameter>
+    <Parameter Name="SignalTimeout"           Value="1"     Unit="s"    PreviousValue="0"     TimeLastChanged="Mon Feb 02 14:17:04 2004"  Description=""></Parameter>
+    <Parameter Name="Max messages"            Value="1"     Unit="msgs" PreviousValue="1"     TimeLastChanged=""                          Description="Maximum number of request messages sent each process run."></Parameter>
+    <Parameter Name="Max requests"            Value="80"    Unit="reqs" PreviousValue="80"    TimeLastChanged=""                          Description="Maximum number of requests packed in one request message."></Parameter>
+    <Parameter Name="maxOutFs"                Value="1000"  Unit="Hz"   PreviousValue="1000"  TimeLastChanged=""                          Description="Maximum send frequency."></Parameter>
+  </Parameters>
+
+  <Alarms>
+    <Alarm Name="Component Suspended" Level="Warning" Enabled="1" Text="Component 'MessengerIOServer' was suspended!" Trig="0" Description="A component was suspended!"  Model="CDPAlarm"></Alarm>
+    <Alarm Name="Transmission Error"    Level="Warning" Enabled="1"           Text="MessengerIOServer transmission-error alarm"                                         Description="Transmission-error alarm"></Alarm>
+  </Alarms>
+
+  <IOConfig>
+  </IOConfig>
+
+</Component>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!-- Default Messenger CDP system component. -->
+<Component Name="Messenger" Model="Messenger" Description='Handles communication between CDP objects, components and applications.' Activate="1">
+  <fs>10</fs>
+
+  <Signals>
+    <Signal Name="Process Timer" Value="0.0" Unit="s/s" Type="double" Description="Process run time each s."  Model="CDPSignal&lt;double&gt;"></Signal>
+    <Signal Name="Process Period" Value="0.0" Unit="s" Type="double" Description="Process interval [s]."  Model="CDPSignal&lt;double&gt;"></Signal>
+
+    <Signal Name="TotalSendMessageRate"   Unit="1/s"    Value="0" Model="CDPSignal&lt;double&gt;" Type="double" Description="Total messages sent each s."></Signal>
+    <Signal Name="UDPNetworkLoad"         Unit="kB/s"   Value="0" Model="CDPSignal&lt;double&gt;" Type="double" Description="Messenger network load, sum of in and out."></Signal>
+    <Signal Name="UDPMessageRateOut"      Unit="1/s"    Value="0" Model="CDPSignal&lt;double&gt;" Type="double" Description="UDP messages sent each s."></Signal>
+    <Signal Name="UDPMessageRateIn"       Unit="1/s"    Value="0" Model="CDPSignal&lt;double&gt;" Type="double" Description="UDP messages received each s."></Signal>
+    <Signal Name="UDPLowSendBufferTop"    Unit="Count"  Value="1" Model="CDPSignal&lt;double&gt;" Type="double" Description="UDP message buffer top, low priority."></Signal>
+    <Signal Name="UDPNormalSendBufferTop" Unit="Count"  Value="1" Model="CDPSignal&lt;double&gt;" Type="double" Description="UDP message buffer top, normal priority."></Signal>
+    <Signal Name="UDPHighSendBufferTop"   Unit="Count"  Value="1" Model="CDPSignal&lt;double&gt;" Type="double" Description="UDP message buffer top, high priority."></Signal>
+    <Signal Name="UDPSendFailures"        Unit="1/min"  Value="0" Model="CDPSignal&lt;double&gt;" Type="double" Description="UDP message send failures last minute."></Signal>
+    <Signal Name="UDPSendRetryCount"      Unit="1/min"  Value="0" Model="CDPSignal&lt;double&gt;" Type="double" Description="UDP message send retry count last minute."></Signal>
+    <Signal Name="UDPSendBlockingTime"    Unit="s"      Value="0" Model="CDPSignal&lt;double&gt;" Type="double" Description="Max UDP send block time (application debug level must be at least 1 to be measured)."></Signal>
+    <Signal Name="UDPSendMaxBlockingTime" Unit="s"      Value="0" Model="CDPSignal&lt;double&gt;" Type="double" Description="Filtered max UDP send block time (application debug level must be at least 1 to be measured)."></Signal>
+ </Signals>
+
+  <Parameters>
+    <Parameter Name="kMonitorFilter"        Unit="0..1"   Value="1"     PreviousValue="0.2" TimeLastChanged="0" Description="IIR filter constant 0..1 for monitor signal filtering. 1 == filter disabled."></Parameter>
+    <Parameter Name="Max retry count"       Unit="Count"  Value="3"     PreviousValue="3"   TimeLastChanged="0" Description="Maximum UDP send retry count for a message."></Parameter>
+    <Parameter Name="Network disabled"      Unit="Bool"   Value="0"     PreviousValue="0"   TimeLastChanged="0" Description="Set == 1 to disable messenger network send and isolate this application from the network."></Parameter>
+  </Parameters>
+  <Alarms>
+    <Alarm Name="Component Suspended" Level="Warning" Enabled="1" Text="Component 'Messenger' was suspended!" Trig="0" Description="A component was suspended!"  Model="CDPAlarm"></Alarm>
+  </Alarms>
+
+</Component>

@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='iso-8859-1'?>
+<Component Name='CDP' Model='CDP' Description='This component holds all CDP System components.' Activate="1">
+  <fs>10</fs>
+  <Subcomponents>
+    <Subcomponent Name="CDPEngine"          Model="CDPEngine"         src="Components\CDP\CDPEngine.xml"></Subcomponent>
+    <Subcomponent Name="Messenger"          Model="Messenger"         src="Components\CDP\Messenger.xml"></Subcomponent>
+    <Subcomponent Name="MessengerIOServer"  Model="MessengerIOServer" src="Components\CDP\MessengerIOServer.xml"></Subcomponent>
+    <Subcomponent Name="EthernetManager"    Model="EthernetManager"   src="Components\CDP\EthernetManager.xml"></Subcomponent>
+    <Subcomponent Name="CDPEventNode"       Model="CDPEventNode"      src="Components\CDP\CDPEventNode.xml"></Subcomponent>
+    <Subcomponent Name="CDPEventSubscriber" Model="EventSubscr"       src="Components\CDP\CDPEventSubscriber.xml"></Subcomponent>
+    <Subcomponent Name="StudioAPIServer"    Model="StudioAPIServer"   src="Components\CDP\StudioAPIServer.xml"></Subcomponent>
+  </Subcomponents>
+  <Signals>
+    <Signal Name="Process Timer" Value="0.0" Unit="s/s" Type="double" Description="Process run time each s."  Model="CDPSignal&lt;double&gt;"></Signal>
+    <Signal Name="Process Period" Value="0.0" Unit="s" Type="double" Description="Process interval [s]."  Model="CDPSignal&lt;double&gt;"></Signal>
+    <Signal Input='0' Model='CDPSignal&lt;int&gt;' Name='CDPSignal' Type='int'  Description=''  InternalValue='0'  Routing=''  RoutingStatus=''  Unit=''  Value='1'></Signal>
+  </Signals>
+  <Alarms>
+    <Alarm Name="Component Suspended" Level="Warning" Enabled="1" Text="Component &apos;CDP&apos; was suspended!" Trig="0" Description="A component was suspended!"  Model="CDPAlarm"></Alarm>
+  </Alarms>
+
+</Component>

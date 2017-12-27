@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<Component Name="EthernetManager" Model="EthernetManager" Description='Monitors Ethernet traffic on all network sockets.' Activate="1">
+  <fs>10</fs>
+
+  <Alarms>
+    <Alarm Name="Component Suspended" Level="Warning" Enabled="1" Text="Component 'EthernetManager' was suspended!" Trig="0" Description="A component was suspended!"  Model="CDPAlarm"></Alarm>
+    <Alarm Name="EthInterfaceTakenDownTrafficJam" Level="Error" Enabled="1" Text="Ethernet interface has been taken down because of too large traffic (over limit), interface index=N" Description="Ethernet interface has been taken down because receiving more than the limit specified in LimitTrafficJamReceive_kB_sec. Text will be updated to contain interface index (0 or 1)."></Alarm>
+    <Alarm Name="EthLinkDown_ETH0" Level="Error" Enabled="1" Text="ETH0 link is down (or error occurred)." Description="ETH0 link is down (or error occurred)."></Alarm>
+    <Alarm Name="EthLinkDown_ETH1" Level="Error" Enabled="1" Text="ETH1 link is down (or error occurred)." Description="ETH1 link is down (or error occurred)."></Alarm>
+  </Alarms>
+
+  <Parameters>
+    <Parameter Name="TCPmaxTransferUnitBody"    	Value="4096"  Unit="bytes"  Description="Decides how TCP packets are sent (splitting into smaller packets or not). 0:Default value of 4096 will be used. TCP packets larger than this limit, will be split. Negative value:There will be no splitting in smaller TCP packets. Positive value: This value will be used (will minimum become size CDP_TCP_MIN_TRANSFER_UNIT_BODY). TCP packets larger than this limit, will be split."></Parameter>
+    <Parameter Name="EthLinkSurveillanceInterv" 	Value="100"   Unit="ms"     Description="Interval for how often to check link-status on the networkinterfaces specified in Application.xml."></Parameter>
+    <Parameter Name="LimitTrafficJamReceive_kB_sec" Value="7000"  Unit="kB/s" Description="Limit for ethernet traffic jam in kB/s (only testing received traffic and if DualEth is enabled). Ethernet interface will be taken down if receiving more than this limit, and EthInterfaceTakenDownTrafficJam-alarm will be Set. Test will not be performed if this limit is 0.0."></Parameter>
+    <Parameter Name="StatisticsSignalsUpdateInterval" Value="1"   Unit="s"    Description="Interval whichs decides how often (but not faster than ts) the statistics signals are updated."></Parameter>
+  </Parameters>
+
+  <Signals>
+    <Signal Name="Process Timer" Value="0.0" Unit="s/s" Type="double" Description="Process run time each s."  Model="CDPSignal&lt;double&gt;"></Signal>
+    <Signal Name="Process Period" Value="0.0" Unit="s" Type="double" Description="Process interval [s]."  Model="CDPSignal&lt;double&gt;"></Signal>
+    <Signal Name="EthLinkValue_ETH0" Type="int" Model="CDPSignal&lt;int&gt;" Description="0:Not updated or routing not up yet, >=1:Link established (OK, link up), -1:No link established (ERROR, link down), <=-2:Error or function not supported (ERROR)."></Signal>
+    <Signal Name="UdpUnicastReceived_ETH0" Type="double" Model="CDPSignal&lt;double&gt;" Description="Amount (kiloBytes) of udp unicast received on this interface last sec."></Signal>
+    <Signal Name="UdpBroadcastReceived_ETH0" Type="double" Model="CDPSignal&lt;double&gt;" Description="Amount (kiloBytes) of udp broadcast received on this interface last sec."></Signal>
+    <Signal Name="TcpReceived_ETH0" Type="double" Model="CDPSignal&lt;double&gt;" Description="Amount (kiloBytes) of tcp received on this interface last sec."></Signal>
+    <Signal Name="TotalReceived_ETH0" Type="double" Model="CDPSignal&lt;double&gt;" Description="Total amount (kiloBytes) of udp and tcp received on this interface last sec."></Signal>
+    <Signal Name="UdpUnicastSent_ETH0" Type="double" Model="CDPSignal&lt;double&gt;" Description="Amount (kiloBytes) of udp unicast sent on this interface last sec."></Signal>
+    <Signal Name="UdpBroadcastSent_ETH0" Type="double" Model="CDPSignal&lt;double&gt;" Description="Amount (kiloBytes) of udp broadcast sent on this interface last sec."></Signal>
+    <Signal Name="TcpSent_ETH0" Type="double" Model="CDPSignal&lt;double&gt;" Description="Amount (kiloBytes) of tcp sent on this interface last sec."></Signal>
+    <Signal Name="TotalSent_ETH0" Type="double" Model="CDPSignal&lt;double&gt;" Description="Total amount (kiloBytes) of udp and tcp sent on this interface last sec."></Signal>
+
+    <Signal Name="EthLinkValue_ETH1" Type="int" Model="CDPSignal&lt;int&gt;" Description="0:Not updated or routing not up yet, >=1:Link established (OK, link up), -1:No link established (ERROR, link down), <=-2:Error or function not supported (ERROR)."></Signal>
+    <Signal Name="UdpUnicastReceived_ETH1" Type="double" Model="CDPSignal&lt;double&gt;" Description="Amount (kiloBytes) of udp unicast received on this interface last sec."></Signal>
+    <Signal Name="UdpBroadcastReceived_ETH1" Type="double" Model="CDPSignal&lt;double&gt;" Description="Amount (kiloBytes) of udp broadcast received on this interface last sec."></Signal>
+    <Signal Name="TcpReceived_ETH1" Type="double" Model="CDPSignal&lt;double&gt;" Description="Amount (kiloBytes) of tcp received on this interface last sec."></Signal>
+    <Signal Name="TotalReceived_ETH1" Type="double" Model="CDPSignal&lt;double&gt;" Description="Total amount (kiloBytes) of udp and tcp received on this interface last sec."></Signal>
+    <Signal Name="UdpUnicastSent_ETH1" Type="double" Model="CDPSignal&lt;double&gt;" Description="Amount (kiloBytes) of udp unicast sent on this interface last sec."></Signal>
+    <Signal Name="UdpBroadcastSent_ETH1" Type="double" Model="CDPSignal&lt;double&gt;" Description="Amount (kiloBytes) of udp broadcast sent on this interface last sec."></Signal>
+    <Signal Name="TcpSent_ETH1" Type="double" Model="CDPSignal&lt;double&gt;" Description="Amount (kiloBytes) of tcp sent on this interface last sec."></Signal>
+    <Signal Name="TotalSent_ETH1" Type="double" Model="CDPSignal&lt;double&gt;" Description="Total amount (kiloBytes) of udp and tcp sent on this interface last sec."></Signal>
+  </Signals>
+</Component>
